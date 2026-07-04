@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
+  <title>charles lovelace // sr. software engineer</title>
+  <meta name="description" content="senior software engineer @ google. go. distributed systems. void." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>_</text></svg>" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ["'JetBrains Mono'", "'Fira Code'", "'Courier New'", "monospace"],
+          },
+          colors: {
+            void: {
+              950: "#09090b",
+              900: "#0a0a0a",
+              850: "#111111",
+              800: "#18181b",
+              700: "#27272a",
+              600: "#3f3f46",
+              500: "#52525b",
+              400: "#71717a",
+              300: "#a1a1aa",
+              200: "#d4d4d8",
+              100: "#e4e4e7",
+            },
+          },
+          animation: {
+            blink: "blink 1s step-end infinite",
+          },
+          keyframes: {
+            blink: {
+              "0%, 100%": { opacity: "1" },
+              "50%": { opacity: "0" },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    @font-face {
+      font-family: "JetBrains Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2") format("woff2");
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    ::selection {
+      background-color: #a1a1aa;
+      color: #09090b;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background-color: #09090b;
+      color: #a1a1aa;
+      font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+      cursor: default;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    section[id] {
+      scroll-margin-top: 3.5rem;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #09090b; }
+    ::-webkit-scrollbar-thumb { background: #3f3f46; border: 1px solid #27272a; }
+    ::-webkit-scrollbar-thumb:hover { background: #52525b; }
+
+    /* glitch effect */
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .glitch::before {
+      animation: glitch-clip-1 3s infinite linear alternate-reverse;
+      clip-path: inset(20% 0 60% 0);
+      color: #d4d4d8;
+      text-shadow: -2px 0 #3f3f46;
+    }
+    .glitch::after {
+      animation: glitch-clip-2 3s infinite linear alternate-reverse;
+      clip-path: inset(60% 0 10% 0);
+      color: #a1a1aa;
+      text-shadow: 2px 0 #52525b;
+    }
+
+    @keyframes glitch-clip-1 {
+      0% { clip-path: inset(20% 0 60% 0); transform: translate(0); }
+      5% { clip-path: inset(5% 0 80% 0); transform: translate(-3px, 1px); }
+      10% { clip-path: inset(70% 0 10% 0); transform: translate(3px, -2px); }
+      15% { clip-path: inset(30% 0 40% 0); transform: translate(-2px, 3px); }
+      20% { clip-path: inset(85% 0 5% 0); transform: translate(1px, -1px); }
+      25% { clip-path: inset(10% 0 70% 0); transform: translate(-1px, 2px); }
+      30% { clip-path: inset(50% 0 30% 0); transform: translate(2px, 0); }
+      35% { clip-path: inset(15% 0 65% 0); transform: translate(-3px, -1px); }
+      40% { clip-path: inset(75% 0 15% 0); transform: translate(0, 2px); }
+      45% { clip-path: inset(40% 0 40% 0); transform: translate(3px, 1px); }
+      50% { clip-path: inset(5% 0 85% 0); transform: translate(-2px, -2px); }
+      55% { clip-path: inset(60% 0 20% 0); transform: translate(1px, 3px); }
+      60% { clip-path: inset(25% 0 55% 0); transform: translate(-1px, 0); }
+      65% { clip-path: inset(80% 0 10% 0); transform: translate(2px, -1px); }
+      70% { clip-path: inset(35% 0 45% 0); transform: translate(-3px, 2px); }
+      75% { clip-path: inset(90% 0 0% 0); transform: translate(0, -3px); }
+      80% { clip-path: inset(45% 0 35% 0); transform: translate(3px, 0); }
+      85% { clip-path: inset(10% 0 75% 0); transform: translate(-2px, 1px); }
+      90% { clip-path: inset(55% 0 25% 0); transform: translate(1px, -2px); }
+      95% { clip-path: inset(20% 0 60% 0); transform: translate(-1px, 3px); }
+      100% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -1px); }
+    }
+
+    @keyframes glitch-clip-2 {
+      0% { clip-path: inset(60% 0 10% 0); transform: translate(0); }
+      5% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -1px); }
+      10% { clip-path: inset(10% 0 70% 0); transform: translate(-3px, 2px); }
+      15% { clip-path: inset(45% 0 35% 0); transform: translate(1px, 0); }
+      20% { clip-path: inset(5% 0 85% 0); transform: translate(-2px, -2px); }
+      25% { clip-path: inset(70% 0 15% 0); transform: translate(3px, 1px); }
+      30% { clip-path: inset(25% 0 55% 0); transform: translate(0, -3px); }
+      35% { clip-path: inset(90% 0 0% 0); transform: translate(-1px, 2px); }
+      40% { clip-path: inset(35% 0 45% 0); transform: translate(2px, 1px); }
+      45% { clip-path: inset(15% 0 65% 0); transform: translate(-3px, -1px); }
+      50% { clip-path: inset(55% 0 30% 0); transform: translate(1px, 3px); }
+      55% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 0); }
+      60% { clip-path: inset(75% 0 10% 0); transform: translate(3px, -2px); }
+      65% { clip-path: inset(20% 0 60% 0); transform: translate(0, 1px); }
+      70% { clip-path: inset(85% 0 5% 0); transform: translate(-1px, -3px); }
+      75% { clip-path: inset(50% 0 30% 0); transform: translate(2px, 2px); }
+      80% { clip-path: inset(10% 0 75% 0); transform: translate(-3px, 0); }
+      85% { clip-path: inset(65% 0 20% 0); transform: translate(1px, -1px); }
+      90% { clip-path: inset(30% 0 50% 0); transform: translate(-2px, 3px); }
+      95% { clip-path: inset(80% 0 10% 0); transform: translate(3px, -2px); }
+      100% { clip-path: inset(45% 0 35% 0); transform: translate(-1px, 1px); }
+    }
+
+    /* scanline overlay */
+    .scanlines::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+    }
+
+    /* noise texture */
+    .noise::before {
+      content: "";
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      animation: noise 0.5s steps(10) infinite;
+    }
+
+    @keyframes noise {
+      0% { transform: translate(0, 0); }
+      10% { transform: translate(-1px, -1px); }
+      20% { transform: translate(1px, 0); }
+      30% { transform: translate(0, 1px); }
+      40% { transform: translate(-1px, 1px); }
+      50% { transform: translate(1px, -1px); }
+      60% { transform: translate(-1px, 0); }
+      70% { transform: translate(1px, 1px); }
+      80% { transform: translate(0, -1px); }
+      90% { transform: translate(-1px, -1px); }
+      100% { transform: translate(1px, 0); }
+    }
+
+    /* chain divider */
+    .chain-divider {
+      font-family: "JetBrains Mono", monospace;
+      color: #3f3f46;
+      letter-spacing: 0;
+      user-select: none;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: clip;
+    }
+
+    /* brutal hover */
+    .brutal-hover { transition: none !important; }
+    .brutal-hover:hover {
+      background-color: #d4d4d8 !important;
+      color: #09090b !important;
+      border-color: #d4d4d8 !important;
+    }
+
+    /* rough border */
+    .rough-border {
+      border: 1px solid #27272a;
+      box-shadow: 1px 1px 0 #18181b, 2px 2px 0 #09090b, inset 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    /* card static */
+    .card-static { position: relative; overflow: hidden; }
+    .card-static::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(161,161,170,0.03) 3px, rgba(161,161,170,0.03) 6px);
+      transition: none;
+    }
+    .card-static:hover::before { opacity: 1; }
+
+    .lowercase-all { text-transform: lowercase; }
+
+    @media (max-width: 640px) {
+      .scanlines::after {
+        background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+      }
+      .noise::before {
+        opacity: 0.015;
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body class="scanlines noise">
+  <main class="min-h-screen bg-void-950 text-zinc-400 font-mono lowercase-all selection:bg-zinc-400 selection:text-void-950">
+
+    <!-- nav -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-void-950/95 border-b border-zinc-800/50 backdrop-blur-sm">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+        <span class="text-zinc-500 text-[10px] sm:text-xs tracking-widest">cl@google:~$</span>
+        <div class="flex gap-2 sm:gap-6 text-[10px] sm:text-xs">
+          <a href="#about" class="text-zinc-600 brutal-hover px-1.5 sm:px-2 py-1 border border-transparent hover:border-zinc-200">/about</a>
+          <a href="#projects" class="text-zinc-600 brutal-hover px-1.5 sm:px-2 py-1 border border-transparent hover:border-zinc-200">/projects</a>
+          <a href="#likes" class="text-zinc-600 brutal-hover px-1.5 sm:px-2 py-1 border border-transparent hover:border-zinc-200">/likes</a>
+          <a href="#contact" class="text-zinc-600 brutal-hover px-1.5 sm:px-2 py-1 border border-transparent hover:border-zinc-200">/contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- hero -->
+    <section class="min-h-screen flex flex-col justify-center px-4 sm:px-6 max-w-5xl mx-auto pt-16">
+      <div class="space-y-5 sm:space-y-6">
+        <p class="text-zinc-700 text-xs tracking-[0.3em]">// initializing profile...</p>
+
+        <h1 class="text-4xl sm:text-7xl md:text-8xl font-bold text-zinc-200 leading-none tracking-tighter">
+          <span class="glitch" data-text="charles">charles</span><br />
+          <span class="glitch" data-text="lovelace">lovelace</span>
+          <span class="animate-blink text-zinc-600 ml-1">&#x2588;</span>
+        </h1>
+
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs">
+          <span class="text-zinc-300 border border-zinc-700 px-3 py-1 inline-block w-fit">sr. software engineer</span>
+          <span class="text-zinc-600">go @ google</span>
+          <span class="text-zinc-700 hidden sm:inline">|</span>
+          <span class="text-zinc-600">he/him</span>
+          <span class="text-zinc-700 hidden sm:inline">|</span>
+          <span class="text-zinc-700" id="age-inline"></span>
+        </div>
+
+        <p class="text-zinc-600 text-xs max-w-md leading-relaxed">
+          scaling distributed systems. less abstraction, more concurrency.<br />
+          currently keeping things alive at google cloud.
+        </p>
+
+        <div class="flex gap-3 pt-4">
+          <a href="#about" class="brutal-hover text-xs border border-zinc-700 text-zinc-400 px-4 sm:px-5 py-2.5 sm:py-2 active:scale-95">cat ./about.md</a>
+          <a href="#projects" class="brutal-hover text-xs border border-zinc-700 text-zinc-400 px-4 sm:px-5 py-2.5 sm:py-2 active:scale-95">ls ./projects/</a>
+        </div>
+      </div>
+
+      <!-- system info desktop -->
+      <div class="mt-12 sm:mt-20 text-zinc-800 text-[10px] leading-relaxed hidden sm:block">
+        <pre class="overflow-hidden" id="sysinfo-desktop"></pre>
+      </div>
+      <!-- system info mobile -->
+      <div class="mt-12 text-zinc-800 text-[10px] leading-relaxed sm:hidden">
+        <div class="space-y-0.5" id="sysinfo-mobile"></div>
+      </div>
+    </section>
+
+    <!-- divider -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2 select-none" aria-hidden="true">
+      <div class="chain-divider text-[10px] overflow-hidden">||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||</div>
+    </div>
+
+    <!-- about -->
+    <section id="about" class="px-4 sm:px-6 max-w-5xl mx-auto py-16 sm:py-24">
+      <div class="space-y-2">
+        <p class="text-zinc-700 text-[10px] tracking-widest">// section:about</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-zinc-200 tracking-tight">
+          <span class="glitch" data-text="about">about</span>
+          <span class="animate-blink text-zinc-600 ml-1 text-lg">&#x2588;</span>
+        </h2>
+        <p class="text-zinc-700 text-xs font-mono">$ cat ~/about.md</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 sm:gap-12 mt-8 sm:mt-12">
+        <div class="space-y-6">
+          <div class="rough-border bg-void-900 p-4 sm:p-6 space-y-4">
+            <p class="text-zinc-600 text-[10px] tracking-widest mb-4">// trajectory.log</p>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              sempre fui aquele moleque desmontando computadores e fu&#xE7;ando em terminais desde crian&#xE7;a. entrei na faculdade de ci&#xEA;ncia da computa&#xE7;&#xE3;o sabendo exatamente o que queria: resolver problemas complexos sem firula.
+            </p>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              hoje, escalo sistemas distribu&#xED;dos na google usando go. menos abstra&#xE7;&#xE3;o in&#xFA;til, mais concorr&#xEA;ncia limpa.
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="rough-border bg-void-900 p-4 sm:p-6">
+            <p class="text-zinc-600 text-[10px] tracking-widest mb-4">// stats.json</p>
+            <div class="space-y-3 text-xs">
+              <div class="flex gap-2"><span class="text-zinc-600">"name":</span><span class="text-zinc-400">"charles lovelace",</span></div>
+              <div class="flex gap-2"><span class="text-zinc-600">"role":</span><span class="text-zinc-400">"sr. software engineer",</span></div>
+              <div class="flex gap-2"><span class="text-zinc-600">"company":</span><span class="text-zinc-400">"google",</span></div>
+              <div class="flex gap-2"><span class="text-zinc-600">"language":</span><span class="text-zinc-400">"go (golang)",</span></div>
+              <div class="flex gap-2"><span class="text-zinc-600">"born":</span><span class="text-zinc-400">"2004-04-01",</span></div>
+              <div class="flex gap-2"><span class="text-zinc-600">"orientation":</span><span class="text-zinc-400">"heterossexual",</span></div>
+              <div class="flex gap-2"><span class="text-zinc-600">"pronouns":</span><span class="text-zinc-400">"he/him",</span></div>
+              <div class="flex gap-2"><span class="text-zinc-600">"cat":</span><span class="text-zinc-400">"void (black cat)",</span></div>
+              <div class="flex gap-2"><span class="text-zinc-600">"status":</span><span class="text-zinc-400">"compiling...",</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- divider -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2 select-none" aria-hidden="true">
+      <div class="chain-divider text-[10px] overflow-hidden">||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||</div>
+    </div>
+
+    <!-- projects -->
+    <section id="projects" class="px-4 sm:px-6 max-w-5xl mx-auto py-16 sm:py-24">
+      <div class="space-y-2">
+        <p class="text-zinc-700 text-[10px] tracking-widest">// section:projects</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-zinc-200 tracking-tight">
+          <span class="glitch" data-text="projects">projects</span>
+          <span class="animate-blink text-zinc-600 ml-1 text-lg">&#x2588;</span>
+        </h2>
+        <p class="text-zinc-700 text-xs font-mono">$ ls -la ~/projects/</p>
+      </div>
+
+      <div class="grid md:grid-cols-1 gap-4 sm:gap-6 mt-8 sm:mt-12">
+        <!-- project 0 -->
+        <article class="card-static rough-border bg-void-900 p-4 sm:p-6 group">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div class="space-y-3 flex-1">
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span class="text-zinc-700 text-xs">00</span>
+                <h3 class="text-zinc-200 text-base sm:text-lg font-bold tracking-tight">GopherScale / Load-Balancer</h3>
+                <span class="text-[10px] px-2 py-0.5 border border-zinc-600 text-zinc-500">[stable]</span>
+              </div>
+              <p class="text-zinc-500 text-sm leading-relaxed max-w-2xl">
+                um balanceador de carga distribu&#xED;do escrito puramente em go, utilizando channels e goroutines para lidar com milh&#xF5;es de requisi&#xE7;&#xF5;es por segundo com lat&#xEA;ncia m&#xED;nima.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#go</span>
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#distributed-systems</span>
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#load-balancing</span>
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#channels</span>
+              </div>
+            </div>
+            <div class="flex gap-2 sm:pt-1">
+              <button class="brutal-hover text-xs border border-zinc-700 text-zinc-500 px-4 py-1.5">view src</button>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-zinc-800/50">
+            <div class="flex flex-wrap items-center gap-2 sm:gap-4 text-[10px] text-zinc-700">
+              <span>lang: go</span>
+              <span class="hidden sm:inline">|</span>
+              <span>license: mit</span>
+              <span class="hidden sm:inline">|</span>
+              <span class="last-commit">last commit: </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- project 1 -->
+        <article class="card-static rough-border bg-void-900 p-4 sm:p-6 group">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div class="space-y-3 flex-1">
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span class="text-zinc-700 text-xs">01</span>
+                <h3 class="text-zinc-200 text-base sm:text-lg font-bold tracking-tight">Void.Mutex / Deadlock-Detector</h3>
+                <span class="text-[10px] px-2 py-0.5 border border-zinc-500 text-zinc-400">[active]</span>
+              </div>
+              <p class="text-zinc-500 text-sm leading-relaxed max-w-2xl">
+                ferramenta de cli que analisa stacks de concorr&#xEA;ncia em tempo de execu&#xE7;&#xE3;o para prever e alertar sobre potenciais deadlocks em ecossistemas de microservi&#xE7;os.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#go</span>
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#concurrency</span>
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#cli</span>
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#debugging</span>
+              </div>
+            </div>
+            <div class="flex gap-2 sm:pt-1">
+              <button class="brutal-hover text-xs border border-zinc-700 text-zinc-500 px-4 py-1.5">view src</button>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-zinc-800/50">
+            <div class="flex flex-wrap items-center gap-2 sm:gap-4 text-[10px] text-zinc-700">
+              <span>lang: go</span>
+              <span class="hidden sm:inline">|</span>
+              <span>license: mit</span>
+              <span class="hidden sm:inline">|</span>
+              <span class="last-commit">last commit: </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- project 2 -->
+        <article class="card-static rough-border bg-void-900 p-4 sm:p-6 group">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div class="space-y-3 flex-1">
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span class="text-zinc-700 text-xs">02</span>
+                <h3 class="text-zinc-200 text-base sm:text-lg font-bold tracking-tight">Null_Stream / gRPC-Orchestrator</h3>
+                <span class="text-[10px] px-2 py-0.5 border border-zinc-700 text-zinc-600">[beta]</span>
+              </div>
+              <p class="text-zinc-500 text-sm leading-relaxed max-w-2xl">
+                orquestrador de servi&#xE7;os baseado em grpc. reduz a sobrecarga de comunica&#xE7;&#xE3;o entre n&#xF3;s na nuvem aplicando compress&#xE3;o agressiva e roteamento otimizado.
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#go</span>
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#grpc</span>
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#microservices</span>
+                <span class="text-[10px] text-zinc-600 border border-zinc-800 px-2 py-0.5">#cloud</span>
+              </div>
+            </div>
+            <div class="flex gap-2 sm:pt-1">
+              <button class="brutal-hover text-xs border border-zinc-700 text-zinc-500 px-4 py-1.5">view src</button>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-zinc-800/50">
+            <div class="flex flex-wrap items-center gap-2 sm:gap-4 text-[10px] text-zinc-700">
+              <span>lang: go</span>
+              <span class="hidden sm:inline">|</span>
+              <span>license: mit</span>
+              <span class="hidden sm:inline">|</span>
+              <span class="last-commit">last commit: </span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="mt-8 text-center">
+        <p class="text-zinc-700 text-xs">
+          $ find ~/projects -name "*.go" | wc -l<br />
+          <span class="text-zinc-500">&nbsp;&#x2192; too many to count</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- divider -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2 select-none" aria-hidden="true">
+      <div class="chain-divider text-[10px] overflow-hidden">||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||</div>
+    </div>
+
+    <!-- likes & dislikes -->
+    <section id="likes" class="px-4 sm:px-6 max-w-5xl mx-auto py-16 sm:py-24">
+      <div class="space-y-2">
+        <p class="text-zinc-700 text-[10px] tracking-widest">// section:likes && dislikes</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-zinc-200 tracking-tight">
+          <span class="glitch" data-text="likes && dislikes">likes && dislikes</span>
+          <span class="animate-blink text-zinc-600 ml-1 text-lg">&#x2588;</span>
+        </h2>
+        <p class="text-zinc-700 text-xs font-mono">$ cat ~/preferences.yml</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 sm:gap-8 mt-8 sm:mt-12">
+        <div class="rough-border bg-void-900 p-4 sm:p-6 space-y-4">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-zinc-500 text-xs">+</span>
+            <h3 class="text-zinc-300 text-sm font-bold">things i tolerate</h3>
+          </div>
+          <ul class="space-y-3 text-sm">
+            <li class="flex gap-3 text-zinc-400"><span class="text-zinc-600 shrink-0">[+]</span><span>go (golang) &#x2014; the only language that respects my time</span></li>
+            <li class="flex gap-3 text-zinc-400"><span class="text-zinc-600 shrink-0">[+]</span><span>rock antigo &#x2014; nirvana, alice in chains, the good stuff</span></li>
+            <li class="flex gap-3 text-zinc-400"><span class="text-zinc-600 shrink-0">[+]</span><span>sil&#xEA;ncio absoluto &#x2014; the ultimate productivity tool</span></li>
+            <li class="flex gap-3 text-zinc-400"><span class="text-zinc-600 shrink-0">[+]</span><span>goroutines &#x2014; concurrency done right</span></li>
+            <li class="flex gap-3 text-zinc-400"><span class="text-zinc-600 shrink-0">[+]</span><span>void (meu gato preto) dormindo no teclado &#x2014; the only acceptable interruption</span></li>
+          </ul>
+        </div>
+
+        <div class="rough-border bg-void-900 p-4 sm:p-6 space-y-4">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-zinc-500 text-xs">-</span>
+            <h3 class="text-zinc-300 text-sm font-bold">things that trigger a segfault</h3>
+          </div>
+          <ul class="space-y-3 text-sm">
+            <li class="flex gap-3 text-zinc-400"><span class="text-zinc-600 shrink-0">[-]</span><span>caf&#xE9; &#x2014; &#xE1;gua gelada ou ch&#xE1; preto, nada mais</span></li>
+            <li class="flex gap-3 text-zinc-400"><span class="text-zinc-600 shrink-0">[-]</span><span>reuni&#xF5;es que poderiam ser um email &#x2014; waste of cpu cycles</span></li>
+            <li class="flex gap-3 text-zinc-400"><span class="text-zinc-600 shrink-0">[-]</span><span>c&#xF3;digo verboso &#x2014; java feelings, no thanks</span></li>
+            <li class="flex gap-3 text-zinc-400"><span class="text-zinc-600 shrink-0">[-]</span><span>pessoas excessivamente animadas de manh&#xE3; &#x2014; error: too much energy before noon</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- divider -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2 select-none" aria-hidden="true">
+      <div class="chain-divider text-[10px] overflow-hidden">||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||</div>
+    </div>
+
+    <!-- contact -->
+    <section id="contact" class="px-4 sm:px-6 max-w-5xl mx-auto py-16 sm:py-24">
+      <div class="space-y-2">
+        <p class="text-zinc-700 text-[10px] tracking-widest">// section:contact</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-zinc-200 tracking-tight">
+          <span class="glitch" data-text="contact">contact</span>
+          <span class="animate-blink text-zinc-600 ml-1 text-lg">&#x2588;</span>
+        </h2>
+        <p class="text-zinc-700 text-xs font-mono">$ cat ~/.ssh/authorized_keys</p>
+      </div>
+
+      <div class="rough-border bg-void-900 p-5 sm:p-8 mt-8 sm:mt-12 max-w-2xl">
+        <p class="text-zinc-600 text-[10px] tracking-widest mb-6">// available channels</p>
+        <div class="space-y-4 text-sm">
+          <div class="flex items-center gap-3 sm:gap-4">
+            <span class="text-zinc-700 text-xs w-16 sm:w-20 shrink-0">github:</span>
+            <a href="https://github.com/charleslovelace" class="text-zinc-400 brutal-hover border border-transparent hover:border-zinc-200 px-2 py-0.5" target="_blank" rel="noopener noreferrer">@charleslovelace</a>
+          </div>
+          <div class="flex items-center gap-3 sm:gap-4">
+            <span class="text-zinc-700 text-xs w-16 sm:w-20 shrink-0">email:</span>
+            <a href="mailto:charles@lovelace.dev" class="text-zinc-400 brutal-hover border border-transparent hover:border-zinc-200 px-2 py-0.5" target="_blank" rel="noopener noreferrer">charles@lovelace.dev</a>
+          </div>
+          <div class="flex items-center gap-3 sm:gap-4">
+            <span class="text-zinc-700 text-xs w-16 sm:w-20 shrink-0">linkedin:</span>
+            <a href="#" class="text-zinc-400 brutal-hover border border-transparent hover:border-zinc-200 px-2 py-0.5" target="_blank" rel="noopener noreferrer">/in/charleslovelace</a>
+          </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-zinc-800/50">
+          <p class="text-zinc-700 text-xs">
+            $ echo "preferred contact: email or github issues"<br />
+            <span class="text-zinc-500">&gt; don't dm me on linkedin asking about microservices at 7am.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- divider -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-2 select-none" aria-hidden="true">
+      <div class="chain-divider text-[10px] overflow-hidden">||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||===||</div>
+    </div>
+
+    <!-- footer -->
+    <footer class="px-4 sm:px-6 max-w-5xl mx-auto py-12 pb-24">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-zinc-700">
+        <div class="space-y-1">
+          <p>built with mass and void. next.js + tailwind.</p>
+          <p>no cookies. no analytics. no javascript frameworks were harmed.</p>
+        </div>
+        <div class="text-right space-y-1">
+          <p id="footer-year"></p>
+          <p class="text-zinc-800" id="footer-pid"></p>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <pre class="text-zinc-800 text-[10px] leading-tight inline-block">
+     /\_/\
+    ( o.o )   &lt; void says: go write some go.
+     &gt; ^ &lt;
+    /|   |\
+   (_|   |_)
+        </pre>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var age = Math.floor((Date.now() - new Date("2004-04-01").getTime()) / 31557600000);
+      var today = new Date().toISOString().split("T")[0];
+
+      document.getElementById("age-inline").textContent = age + " yrs";
+
+      document.getElementById("sysinfo-desktop").textContent =
+        "\n" +
+        "  ╔══════════════════════════════════════════════╗\n" +
+        "  ║  system:   arch linux 6.7.4                  ║\n" +
+        "  ║  shell:    zsh 5.9                           ║\n" +
+        "  ║  editor:   neovim 0.10                       ║\n" +
+        "  ║  lang:     go 1.22 | rust (learning)         ║\n" +
+        "  ║  uptime:   " + age + " years                           ║\n" +
+        "  ╚══════════════════════════════════════════════╝\n";
+
+      document.getElementById("sysinfo-mobile").innerHTML =
+        "<p>sys: arch linux 6.7.4</p>" +
+        "<p>shell: zsh 5.9</p>" +
+        "<p>editor: neovim 0.10</p>" +
+        "<p>lang: go 1.22 | rust</p>" +
+        "<p>uptime: " + age + " years</p>";
+
+      var commits = document.querySelectorAll(".last-commit");
+      for (var i = 0; i < commits.length; i++) {
+        commits[i].textContent = "last commit: " + today;
+      }
+
+      document.getElementById("footer-year").innerHTML = "&copy; " + new Date().getFullYear() + " charles lovelace";
+      document.getElementById("footer-pid").textContent = "pid: " + Math.floor(Math.random() * 65535) + " | exit code: 0";
+    })();
+  </script>
+</body>
+</html>

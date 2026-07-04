@@ -1,0 +1,410 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── jetbrains mono from google fonts (self-hosted subset) ── */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPVmUsaaDhw.woff2")
+    format("woff2");
+}
+
+/* ── base ── */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background-color: #a1a1aa;
+    color: #09090b;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #09090b;
+    color: #a1a1aa;
+    font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+    cursor: default;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  section[id] {
+    scroll-margin-top: 3.5rem;
+  }
+
+  /* custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #09090b;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3f3f46;
+    border: 1px solid #27272a;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #52525b;
+  }
+}
+
+/* ── glitch effect ── */
+@layer components {
+  .glitch {
+    position: relative;
+    display: inline-block;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glitch::before {
+    animation: glitch-clip-1 3s infinite linear alternate-reverse;
+    clip-path: inset(20% 0 60% 0);
+    color: #d4d4d8;
+    text-shadow: -2px 0 #3f3f46;
+  }
+
+  .glitch::after {
+    animation: glitch-clip-2 3s infinite linear alternate-reverse;
+    clip-path: inset(60% 0 10% 0);
+    color: #a1a1aa;
+    text-shadow: 2px 0 #52525b;
+  }
+
+  @keyframes glitch-clip-1 {
+    0% {
+      clip-path: inset(20% 0 60% 0);
+      transform: translate(0);
+    }
+    5% {
+      clip-path: inset(5% 0 80% 0);
+      transform: translate(-3px, 1px);
+    }
+    10% {
+      clip-path: inset(70% 0 10% 0);
+      transform: translate(3px, -2px);
+    }
+    15% {
+      clip-path: inset(30% 0 40% 0);
+      transform: translate(-2px, 3px);
+    }
+    20% {
+      clip-path: inset(85% 0 5% 0);
+      transform: translate(1px, -1px);
+    }
+    25% {
+      clip-path: inset(10% 0 70% 0);
+      transform: translate(-1px, 2px);
+    }
+    30% {
+      clip-path: inset(50% 0 30% 0);
+      transform: translate(2px, 0);
+    }
+    35% {
+      clip-path: inset(15% 0 65% 0);
+      transform: translate(-3px, -1px);
+    }
+    40% {
+      clip-path: inset(75% 0 15% 0);
+      transform: translate(0, 2px);
+    }
+    45% {
+      clip-path: inset(40% 0 40% 0);
+      transform: translate(3px, 1px);
+    }
+    50% {
+      clip-path: inset(5% 0 85% 0);
+      transform: translate(-2px, -2px);
+    }
+    55% {
+      clip-path: inset(60% 0 20% 0);
+      transform: translate(1px, 3px);
+    }
+    60% {
+      clip-path: inset(25% 0 55% 0);
+      transform: translate(-1px, 0);
+    }
+    65% {
+      clip-path: inset(80% 0 10% 0);
+      transform: translate(2px, -1px);
+    }
+    70% {
+      clip-path: inset(35% 0 45% 0);
+      transform: translate(-3px, 2px);
+    }
+    75% {
+      clip-path: inset(90% 0 0% 0);
+      transform: translate(0, -3px);
+    }
+    80% {
+      clip-path: inset(45% 0 35% 0);
+      transform: translate(3px, 0);
+    }
+    85% {
+      clip-path: inset(10% 0 75% 0);
+      transform: translate(-2px, 1px);
+    }
+    90% {
+      clip-path: inset(55% 0 25% 0);
+      transform: translate(1px, -2px);
+    }
+    95% {
+      clip-path: inset(20% 0 60% 0);
+      transform: translate(-1px, 3px);
+    }
+    100% {
+      clip-path: inset(70% 0 10% 0);
+      transform: translate(2px, -1px);
+    }
+  }
+
+  @keyframes glitch-clip-2 {
+    0% {
+      clip-path: inset(60% 0 10% 0);
+      transform: translate(0);
+    }
+    5% {
+      clip-path: inset(80% 0 5% 0);
+      transform: translate(2px, -1px);
+    }
+    10% {
+      clip-path: inset(10% 0 70% 0);
+      transform: translate(-3px, 2px);
+    }
+    15% {
+      clip-path: inset(45% 0 35% 0);
+      transform: translate(1px, 0);
+    }
+    20% {
+      clip-path: inset(5% 0 85% 0);
+      transform: translate(-2px, -2px);
+    }
+    25% {
+      clip-path: inset(70% 0 15% 0);
+      transform: translate(3px, 1px);
+    }
+    30% {
+      clip-path: inset(25% 0 55% 0);
+      transform: translate(0, -3px);
+    }
+    35% {
+      clip-path: inset(90% 0 0% 0);
+      transform: translate(-1px, 2px);
+    }
+    40% {
+      clip-path: inset(35% 0 45% 0);
+      transform: translate(2px, 1px);
+    }
+    45% {
+      clip-path: inset(15% 0 65% 0);
+      transform: translate(-3px, -1px);
+    }
+    50% {
+      clip-path: inset(55% 0 30% 0);
+      transform: translate(1px, 3px);
+    }
+    55% {
+      clip-path: inset(40% 0 40% 0);
+      transform: translate(-2px, 0);
+    }
+    60% {
+      clip-path: inset(75% 0 10% 0);
+      transform: translate(3px, -2px);
+    }
+    65% {
+      clip-path: inset(20% 0 60% 0);
+      transform: translate(0, 1px);
+    }
+    70% {
+      clip-path: inset(85% 0 5% 0);
+      transform: translate(-1px, -3px);
+    }
+    75% {
+      clip-path: inset(50% 0 30% 0);
+      transform: translate(2px, 2px);
+    }
+    80% {
+      clip-path: inset(10% 0 75% 0);
+      transform: translate(-3px, 0);
+    }
+    85% {
+      clip-path: inset(65% 0 20% 0);
+      transform: translate(1px, -1px);
+    }
+    90% {
+      clip-path: inset(30% 0 50% 0);
+      transform: translate(-2px, 3px);
+    }
+    95% {
+      clip-path: inset(80% 0 10% 0);
+      transform: translate(3px, -2px);
+    }
+    100% {
+      clip-path: inset(45% 0 35% 0);
+      transform: translate(-1px, 1px);
+    }
+  }
+
+  /* ── scanline overlay ── */
+  .scanlines::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.08) 2px,
+      rgba(0, 0, 0, 0.08) 4px
+    );
+  }
+
+  /* ── noise texture (pure css) ── */
+  .noise::before {
+    content: "";
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    animation: noise 0.5s steps(10) infinite;
+  }
+
+  /* ── chain divider ── */
+  .chain-divider {
+    font-family: "JetBrains Mono", monospace;
+    color: #3f3f46;
+    letter-spacing: 0;
+    user-select: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+  }
+
+  /* ── terminal prompt ── */
+  .terminal-prompt::before {
+    content: "$ > ";
+    color: #52525b;
+  }
+
+  /* ── brutal hover on interactive ── */
+  .brutal-hover {
+    transition: none !important;
+  }
+  .brutal-hover:hover {
+    background-color: #d4d4d8 !important;
+    color: #09090b !important;
+    border-color: #d4d4d8 !important;
+  }
+
+  /* ── corrupted text effect ── */
+  .corrupted {
+    position: relative;
+  }
+  .corrupted::after {
+    content: "█";
+    animation: blink 1s step-end infinite;
+    color: #52525b;
+  }
+
+  /* ── rough border ── */
+  .rough-border {
+    border: 1px solid #27272a;
+    box-shadow:
+      1px 1px 0 #18181b,
+      2px 2px 0 #09090b,
+      inset 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (max-width: 640px) {
+    .scanlines::after {
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.04) 2px,
+        rgba(0, 0, 0, 0.04) 4px
+      );
+    }
+
+    .noise::before {
+      opacity: 0.015;
+      animation: none;
+    }
+  }
+
+  /* ── project card static effect ── */
+  .card-static {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-static::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(161, 161, 170, 0.03) 3px,
+      rgba(161, 161, 170, 0.03) 6px
+    );
+    transition: none;
+  }
+  .card-static:hover::before {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .text-shadow-none {
+    text-shadow: none;
+  }
+
+  .lowercase-all {
+    text-transform: lowercase;
+  }
+}
