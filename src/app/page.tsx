@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-void-950 text-zinc-400 font-mono lowercase-all selection:bg-zinc-400 selection:text-void-950">
       {/* ═══ nav ═══ */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-void-950/95 border-b border-zinc-800/50 backdrop-blur-sm">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-void-950/95 border-b border-zinc-800/50 sm:backdrop-blur-sm">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <span className="text-zinc-500 text-[10px] sm:text-xs tracking-widest">
             cl@google:~$
@@ -48,6 +48,8 @@ export default function Home() {
               sr. software engineer
             </span>
             <span className="text-zinc-600">go @ google</span>
+            <span className="text-zinc-700 hidden sm:inline">|</span>
+            <span className="text-zinc-600">sydney, au</span>
             <span className="text-zinc-700 hidden sm:inline">|</span>
             <span className="text-zinc-600">he/him</span>
             <span className="text-zinc-700 hidden sm:inline">|</span>
@@ -117,8 +119,9 @@ export default function Home() {
                 complexos sem firula.
               </p>
               <p className="text-zinc-400 text-sm leading-relaxed">
-                hoje, escalo sistemas distribuídos na google usando go. menos
-                abstração inútil, mais concorrência limpa.
+                hoje, escalo sistemas distribuídos na google em sydney,
+                austrália usando go. menos abstração inútil, mais concorrência
+                limpa.
               </p>
             </div>
           </div>
@@ -133,6 +136,7 @@ export default function Home() {
                   { key: "name", val: '"charles lovelace"' },
                   { key: "role", val: '"sr. software engineer"' },
                   { key: "company", val: '"google"' },
+                  { key: "location", val: '"sydney, australia"' },
                   { key: "language", val: '"go (golang)"' },
                   { key: "born", val: '"2004-04-01"' },
                   { key: "orientation", val: '"heterossexual"' },
@@ -275,6 +279,7 @@ export default function Home() {
                 "rock antigo — nirvana, alice in chains, the good stuff",
                 "silêncio absoluto — the ultimate productivity tool",
                 "goroutines — concurrency done right",
+                "soulslike games — elden ring, dark souls, sekiro. you die, you learn, you git gud",
                 "void (meu gato preto) dormindo no teclado — the only acceptable interruption",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-zinc-400">
@@ -369,7 +374,7 @@ export default function Home() {
               &copy; {new Date().getFullYear()} charles lovelace
             </p>
             <p className="text-zinc-800">
-              pid: {Math.floor(Math.random() * 65535)} | exit code: 0
+              pid: 42069 | exit code: 0
             </p>
           </div>
         </div>
